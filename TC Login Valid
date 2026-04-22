@@ -1,0 +1,37 @@
+import com.kms.katalon.core.testobject.TestObject
+import com.kms.katalon.core.testobject.ConditionType
+import static com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+
+def createTestObject(String attr, String value) {
+    TestObject to = new TestObject()
+    to.addProperty(attr, ConditionType.EQUALS, value)
+    return to
+}
+
+// Open browser
+WebUI.openBrowser('')
+WebUI.navigateToUrl('https://example.com/login')
+
+// Input Username
+TestObject username = createTestObject('id', 'username')
+WebUI.waitForElementVisible(username, 10)
+WebUI.setText(username, 'User123')
+
+// Input Password
+TestObject password = createTestObject('id', 'password')
+WebUI.waitForElementVisible(password, 10)
+WebUI.setEncryptedText(password, 'P@ssw0rd123')
+
+// Login button
+TestObject loginBtn = createTestObject('id', 'login')
+WebUI.waitForElementClickable(loginBtn, 10)
+WebUI.click(loginBtn)
+
+// Wait dashboard muncul
+WebUI.waitForElementVisible(dashboard, 10)
+
+// Assertion
+WebUI.verifyElementVisible(dashboard)
+
+// Close browser
+WebUI.closeBrowser()
