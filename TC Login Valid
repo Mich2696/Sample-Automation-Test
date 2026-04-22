@@ -22,7 +22,7 @@ TestObject password = createTestObject('id', 'password')
 WebUI.waitForElementVisible(password, 10)
 WebUI.setEncryptedText(password, 'P@ssw0rd123')
 
-// Login button
+// Click Login button
 TestObject loginBtn = createTestObject('id', 'login')
 WebUI.waitForElementClickable(loginBtn, 10)
 WebUI.click(loginBtn)
