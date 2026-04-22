@@ -37,7 +37,7 @@ WebUI.waitForElementVisible(errorMsg, 10)
 // Assertion: error tampil
 WebUI.verifyElementVisible(errorMsg)
 
-// Optional: validasi text error
+// Validasi error text
 WebUI.verifyElementText(errorMsg, 'Invalid username or password')
 
 // Validasi tidak redirect ke dashboard
