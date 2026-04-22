@@ -1,0 +1,48 @@
+import com.kms.katalon.core.testobject.TestObject
+import com.kms.katalon.core.testobject.ConditionType
+import static com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+
+// Helper function
+def createTestObject(String attr, String value) {
+    TestObject to = new TestObject()
+    to.addProperty(attr, ConditionType.EQUALS, value)
+    return to
+}
+
+// Open browser
+WebUI.openBrowser('')
+WebUI.navigateToUrl('https://example.com/login')
+
+// Input username salah
+TestObject username = createTestObject('id', 'username')
+WebUI.waitForElementVisible(username, 10)
+WebUI.setText(username, 'wrongUser')
+
+// Input password salah
+TestObject password = createTestObject('id', 'password')
+WebUI.waitForElementVisible(password, 10)
+WebUI.setEncryptedText(password, 'wrongPassword')
+
+// Klik login
+TestObject loginBtn = createTestObject('id', 'login')
+WebUI.waitForElementClickable(loginBtn, 10)
+WebUI.click(loginBtn)
+
+// Error message
+TestObject errorMsg = createTestObject('id', 'error-message')
+
+// Wait error muncul
+WebUI.waitForElementVisible(errorMsg, 10)
+
+// Assertion: error tampil
+WebUI.verifyElementVisible(errorMsg)
+
+// Optional: validasi text error
+WebUI.verifyElementText(errorMsg, 'Invalid username or password')
+
+// Validasi tidak redirect ke dashboard
+TestObject dashboard = createTestObject('id', 'dashboard')
+WebUI.verifyElementNotPresent(dashboard, 5)
+
+// Close browser
+WebUI.closeBrowser()
