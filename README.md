@@ -14,17 +14,17 @@ def createTestObject(String attr, String value) {
 WebUI.openBrowser('')
 WebUI.navigateToUrl('https://example.com/login')
 
-// Username
+// Put Username
 TestObject username = createTestObject('id', 'username')
 WebUI.waitForElementVisible(username, 10)
-WebUI.setText(username, 'validUser')
+WebUI.setText(username, 'User123')
 
-// Password
+// Put Password
 TestObject password = createTestObject('id', 'password')
 WebUI.waitForElementVisible(password, 10)
-WebUI.setEncryptedText(password, 'encryptedPassword')
+WebUI.setEncryptedText(password, 'P@ssw0rd')
 
-// Login button
+// CLick Login button
 TestObject loginBtn = createTestObject('id', 'login')
 WebUI.waitForElementClickable(loginBtn, 10)
 WebUI.click(loginBtn)
